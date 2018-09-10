@@ -1,5 +1,6 @@
 # check again if its better to have Friend class or just use :class_name :user
-class Friend < ActiveRecord::Base
-  has_many :messages
+class Friendship < ActiveRecord::Base
+  # has_many :messages
   belongs_to :user
+  belongs_to :friend, class_name: 'User'
 end
