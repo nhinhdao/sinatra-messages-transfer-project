@@ -1,5 +1,5 @@
 # To-do list for Sinatra Messages Transfer Project
-- This project is a simple version mimicking a social app by imitating connections between a user, his/her friends and their messages
+- This project is a very simple social app version mimicking connections between a user, his/her friends and their messages
 - Be able to create a user, view list of existing users, make friends with them and send/receive messages
 - Always add descriptive comments and to-do task within code
 - Be a productive coder
