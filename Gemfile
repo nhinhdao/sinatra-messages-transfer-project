@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'activerecord', '~> 4.2.7.1', require: 'active_record'
+gem 'activerecord', require: 'active_record' # '~> 4.2.7.1'
 gem 'bcrypt'
 gem 'pry'
 gem 'rack-test'
