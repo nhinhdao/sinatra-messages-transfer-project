@@ -1,0 +1,13 @@
+<h1>Message View Page</h1>
+
+<h2>Sender: <%= @message.user.username %></h2><br>
+<h2>Receiver: <%= @message.friend.username %></h2><br>
+<h2>Content: </h2><br>
+<h2><%= @message.user.username %></h2>
+
+<a href="/messages/edit_message">Edit Message</a><br>
+<form class="" action="/messages/<%= @message.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="delete">
+  <input type="submit" name="" value="Delete Message">
+</form>
+<a href="/users/current_user">Homepage</a>

@@ -1,0 +1,15 @@
+<h1>Edit Message</h1>
+
+<form class="" action="/messages/<%= @message.id %>" method="post">
+  <input id="hidden" type="hidden" name="_method" value="patch">
+  <label>Receiver</label><br>
+  <select name="message[friend_id]">
+    <% current_user.friends.each do |friend| %>
+    <option value="<%= friend.id %>" <%= selected if @message.friend.id == friend.id %> ><%= friend.username %></option>
+    <% end %>
+  </select><br>
+  <!-- <input type="text" name="message[friend_id]" value=""> -->
+  <label>Content</label><br>
+  <textarea name="message[content]" rows="4" cols="80" value = "<%= @message.content %>"></textarea>
+  <input type="submit" name="" value="Send">
+</form>

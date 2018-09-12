@@ -1,0 +1,8 @@
+<h1>Hi, <%= current_user.username %></h1>
+<!-- <h3>You have <%= current_user.messages.count %> messages</h3> -->
+<h3>
+  <a class="button" href="/messages/messages">View All Messages</a><br>
+  <a class="button" href="/users/friends">View All Friends</a><br>
+  <a class="button" href="/users/new_friend">Make New Friend</a><br>
+  <a class="button" href="/messages/new_message">Compose New Message</a>
+</h3>
