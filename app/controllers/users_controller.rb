@@ -1,7 +1,7 @@
 # Routes for User Interaction
 class UsersController < ApplicationController
   get '/signup' do
-    if !session[:id]
+    if !logged_in?
       erb :'users/create_user'
     else
       erb :'users/current_user'
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   get '/login' do
-    if !session[:id]
+    if !logged_in?
       erb :'users/login'
     else
       erb :'users/current_user'
