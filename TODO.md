@@ -27,17 +27,15 @@
 
 ### Views/Users
 
--   show_user.erb - pop-up notification for new messages, link to view all messages, link to compose message to friend, link to views friends
+-   current_user.erb - link to view all messages, link to compose message to friend, link to views friends...
 -   create_user.erb - create an account (sign up), redirect to users/user.id
 -   login.erb - log in form, redirect to users/user.id
--   friends.erb - view all friends (link to friend's infos, link to make new friend, link to unfriend)
+-   friends.erb - view all friends (link to send message, link to unfriend)
 -   new_friend.erb - view all users and choose one or more to make friend
--   unfriend.erb - unfriend one or more friends
--   friend-infos.erb - view single friend infomation and all there messages to you.
 
 ### Views/Messages
 
--   messages.erb - view all message (link to compose a new message, edit a message and delete a message)
+-   messages.erb - view all message (show sent and inbox messages)
 -   new_message - compose message to a friend, redirect to messages/message.id
 -   edit_message - edit an existing message, redirect to messages/message.id
--   delete_message - delete a message, redirect to messages.erb
+-   show_message - view a single message
