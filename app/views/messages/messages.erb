@@ -4,14 +4,10 @@
 <% current_user.messages.each do |message| %>
 <table>
   <tr>
-    <th>From</th>
-    <th></th>
-  </tr>
-  <tr>
     <td><%= message.friend.username %></td>
     <td><a href="/messages/<%= message.id %>">View</a></td>
   </tr>
 </table>
 <% end %>
-
-<a href="/users/current_user">Homepage</a>
+<br>
+<a class="button" href="/users/current_user">Homepage</a>

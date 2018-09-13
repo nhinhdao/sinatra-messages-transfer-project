@@ -1,16 +1,14 @@
 <h1>Friend List:</h1>
+<h3><a href="/users/current_user">Homepage</a></h3>
 <% current_user.friends.each do |friend| %>
 <h4>___</h4>
-<h3><%= friend.username %></h3>
-<h4><%= friend.email %></h4>
-<h4 class="button"><a href="/messges/new_message">New Message</a></h4>
-<form class="" action="/users/<%= friend.id %>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" name="" value="Unfriend">
-</form>
-<h4>___</h4>
+<div class="box">
+  <h3><%= friend.username %></h3>
+  <h4><%= friend.email %></h4>
+  <h4 class="button"><a href="/messages/new_message">New Message</a></h4>
+  <form class="" action="/users/<%= friend.id %>" method="post">
+    <input id="hidden" type="hidden" name="_method" value="delete">
+    <input type="submit" name="" value="Unfriend">
+  </form>
+</div>
 <% end %>
-<h3><a href="/users/current_user">Homepage</a></h3>
-
-
-<!-- <h4 class="button"><a href="/users/unfriend">Unfriend</a></h4> -->

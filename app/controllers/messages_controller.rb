@@ -1,5 +1,7 @@
+require 'rack-flash'
 # Routes for Messages Flow
 class MessagesController < ApplicationController
+  use Rack::Flash
   # view all TO AND FROM users' messages
   get '/messages/messages' do
     erb :'/messages/messages'
@@ -12,8 +14,12 @@ class MessagesController < ApplicationController
 
   post '/messages/send_message' do
     # binding.pry
-    @message = Message.create(content: params[:message][:content], user_id: current_user.id, friend_id: params[:message][:friend_id])
-    erb :"/messages/#{@message.id}"
+    @message_to_user = Message.create(content: params[:message][:content], user_id: current_user.id, friend_id: params[:message][:friend_id])
+    @friend = User.find(params[:message][:friend_id])
+    @message_to_friend = Message.create(content: params[:message][:content], user_id: @friend.id, friend_id: current_user.id)
+    @friend.messages << @message_to_friend
+    flash[:sent] = "Message was sent to #{@friend.username}"
+    redirect :"/messages/#{@message_to_user.id}"
   end
 
   # view a single message
@@ -23,13 +29,14 @@ class MessagesController < ApplicationController
   end
 
   # edit a message that belongs to user only
-  get '/message/:id/edit' do
+  get '/messages/:id/edit' do
+    # binding.pry
     @message = Message.find(params[:id])
-    if @massage && current_user.messages.include?(@message)
+    if @message && @message.user == current_user
       erb :'/messages/edit_message'
     else
-      # TODO: Pop up warning for trying to edit other user's message.
-      redirect "/messages/messages"
+      flash[:message_edit] = "Sorry. You can not edit this message" 
+      redirect "/messages/#{@message.id}"
     end
   end
 

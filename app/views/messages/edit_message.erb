@@ -3,13 +3,13 @@
 <form class="" action="/messages/<%= @message.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="patch">
   <label>Receiver</label><br>
-  <select name="message[friend_id]">
+  <!-- <select name="message[friend_id]">
     <% current_user.friends.each do |friend| %>
-    <option value="<%= friend.id %>" <%= selected if @message.friend.id == friend.id %> ><%= friend.username %></option>
+    <option value="<%= friend.id %>" <%= 'selected' if @message.friend.id == friend.id %>><%= friend.username %></option>
     <% end %>
-  </select><br>
-  <!-- <input type="text" name="message[friend_id]" value=""> -->
+  </select><br> -->
+  <p><%= @message.friend.username %></p>
   <label>Content</label><br>
-  <textarea name="message[content]" rows="4" cols="80" value = "<%= @message.content %>"></textarea>
+  <textarea name="message[content]" rows="4" cols="80" value = ""><%= @message.content %></textarea><br><br>
   <input type="submit" name="" value="Send">
 </form>

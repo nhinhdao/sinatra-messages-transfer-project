@@ -1,5 +1,7 @@
+require 'rack-flash'
 # Routes for User Interaction
 class UsersController < ApplicationController
+  use Rack::Flash
   get '/signup' do
     if !logged_in?
       erb :'users/create_user'
@@ -8,17 +10,21 @@ class UsersController < ApplicationController
     end
   end
 
-  # TODO: Show warning when user tries to create account with missing information
+
+  # and notice them when they successfully sign up
   post '/signup' do
     @user = User.new(params[:user])
     if @user.save
       session[:id] = @user.id
+      flash[:notice] = "Thanks for signing up!"
       redirect :"users/current_user"
     else
       redirect :'/signup'
     end
   end
 
+
+  # Log in page
   get '/login' do
     if !logged_in?
       erb :'users/login'
@@ -27,24 +33,29 @@ class UsersController < ApplicationController
     end
   end
 
-  # TODO: Show warning when user gives wrong informations that don't match record
+
   post '/login' do
-    @user = User.find_by(params[:user][:email])
+  # binding.pry
+    @user = User.find_by(email: params[:user][:email])
     if @user && @user.authenticate(params[:user][:password])
       session[:id] = @user.id
       erb :"users/current_user"
     else
+      flash[:error] = "User's Information does not match our record. Please try again"
       redirect :'/login'
     end
   end
+
 
   get '/users/current_user' do
     erb :'users/current_user'
   end
 
+
   get '/users/friends' do
     erb :'/users/friends'
   end
+
 
   delete '/users/:id' do
     @user = User.find_by_id(params[:id])
@@ -52,10 +63,12 @@ class UsersController < ApplicationController
     redirect '/users/friends'
   end
 
-# TODO: delete_if doesn't work, check User.all
+
   get '/users/new_friend' do
+    # binding.pry
     erb :'users/new_friend'
   end
+
 
   post '/users/create_friends' do
     # params[:friends] = [2,3,...]
@@ -68,5 +81,11 @@ class UsersController < ApplicationController
       end
     end
     redirect '/users/friends'
+  end
+
+
+  get '/logout' do
+    session.clear
+    redirect '/'
   end
 end
