@@ -1,13 +1,23 @@
 <% if flash.has?(:notice) %>
-  <%= flash[:notice] %>
+  <h4 class="alert alert-success" role="alert"><%= flash[:notice]%></h4>
 <% end %>
 
-<h1>Hi, <%= current_user.username %></h1>
-<!-- <h3>You have <%= current_user.messages.count %> messages</h3> -->
-<h3>
-  <a class="button" href="/messages/messages">View All Messages</a><br>
-  <a class="button" href="/users/friends">View All Friends</a><br>
-  <a class="button" href="/users/new_friend">Make New Friend</a><br>
-  <a class="button" href="/messages/new_message">Send Message</a><br>
-  <a class="button" href="/logout">Log Out</a>
+<h1 class="main-title">Hi, <%= current_user.username %></h1>
+<br><br>
 </h3>
+
+<table class="table">
+  <td class="active"><a href="/messages/messages">View All Messages</a></td>
+</table>
+<table class="table table-hover">
+  <td class="success"><a href="/users/friends">View All Friends</a></td>
+</table>
+<table class="table table-hover">
+  <td class="warning"><a href="/users/new_friend">Make New Friend</a></td>
+</table>
+<table class="table table-hover">
+  <td class="danger"><a href="/messages/new_message">Send Message</a></td>
+</table>
+<table class="table table-hover">
+  <td class="info"><a href="/logout">Log Out</a></td>
+</table>

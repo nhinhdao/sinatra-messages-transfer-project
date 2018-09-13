@@ -1,14 +1,18 @@
-<h1>Send Message</h1>
 
-<form class="" action="/messages/send_message" method="post">
-  <label>Receiver</label><br>
-  <select name="message[friend_id]">
+<h1 class="main-title">Send Message</h1>
+<br>
+<form role="form" action="/messages/send_message" method="post">
+  <!-- <div class="form-group"> -->
+  <label for="receiver">Receiver</label>
+  <select name="message[friend_id]" class="form-control" id="receiver">
     <% current_user.friends.each do |friend| %>
     <option value="<%= friend.id %>"><%= friend.username %></option>
     <% end %>
   </select><br>
-  <!-- <input type="text" name="message[friend_id]" value=""> -->
-  <label>Content</label><br>
-  <textarea name="message[content]" rows="4" cols="80"></textarea><br>
-  <input type="submit" name="" value="Send">
+  <br>
+  <label for="content">Content</label>
+  <input name="message[content]" type="text" class="form-control" id="content" >
+  <textarea name="message[content]" class="form-control" rows="3"></textarea>
+  <br>
+  <button type="submit" class="btn btn-info">Send</button>
 </form>

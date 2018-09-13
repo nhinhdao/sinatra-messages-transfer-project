@@ -32,12 +32,13 @@ class MessagesController < ApplicationController
     if @message && @message.user == current_user
       erb :'/messages/edit_message'
     else
-      flash[:message_edit] = "Sorry. You can not edit the message was sent by #{@message.friend.username}."
+      flash[:message_edit] = "Sorry. You can not edit the message was sent by #{@message.user.username}."
       redirect "/messages/#{@message.id}"
     end
   end
 
   patch '/messages/:id' do
+    # binding.pry
     @message = Message.find(params[:id])
     @message.update(content: params[:message][:content])
     redirect "/messages/#{@message.id}"
@@ -47,7 +48,7 @@ class MessagesController < ApplicationController
   delete '/messages/:id' do
     @message = Message.find(params[:id])
     @message.delete
-    binding.pry
+    # binding.pry
     redirect "/messages/messages"
   end
 end

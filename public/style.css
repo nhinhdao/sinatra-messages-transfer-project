@@ -1,0 +1,13 @@
+@import url(http://fonts.googleapis.com/css?family=Clicker+Script);
+@import url(http://fonts.googleapis.com/css?family=Elsie+Swash+Caps:400,900);
+
+/* .main-title {
+   font-family: 'Elsie Swash Caps', cursive;
+  font-family: 'Open Sans', sans-serif;
+}
+*/
+
+body div.container .main_title{
+  font-family: 'Elsie Swash Caps', cursive;
+  /* font-family: 'Open Sans', sans-serif; */
+}

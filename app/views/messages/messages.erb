@@ -1,26 +1,31 @@
-<h1>Hi, <%= current_user.username %></h1>
+<h1 class="main-title">Hi, <%= current_user.username %></h1>
 
 <h2>Your Messages</h2>
-<h3>Sent</h3>
-<% current_user.messages.each do |message| %>
+
+<h3><button type="button" class="btn btn-primary">Inbox</button></h3>
+
+<% friends_messages = Message.all.select {|m| m.friend == current_user} %>
+<% friends_messages.each do |message| %>
 <table>
   <tr>
-    <td><%= message.friend.username %></td>
+    <td><%= message.user.username %></td>
+    <td>-</td>
     <td><a href="/messages/<%= message.id %>">View</a></td>
   </tr>
 </table>
 <% end %>
 <br>
 
-<h3>Inbox</h3>
-<% friends_messages = Message.all.select {|m| m.friend == current_user} %>
-<% friends_messages.each do |message| %>
+<h3><button type="button" class="btn btn-primary">Sent</button></h3>
+<% current_user.messages.each do |message| %>
 <table>
   <tr>
-    <td><%= message.user.username %></td>
+    <td><%= message.friend.username %></td>
+    <td>-</td>
     <td><a href="/messages/<%= message.id %>">View</a></td>
   </tr>
 </table>
 <% end %>
+
 <br>
 <a class="button" href="/users/current_user">Homepage</a>

@@ -1,16 +1,27 @@
-<h1>Message View Page</h1>
+<h1 class="main-title">Message View Page</h1>
+<br>
+<div class="form-group">
+  <label for="sender">Sender</label>
+  <p class="form-control" id="sender"><%= @message.user.username %></p>
+</div>
+<div class="form-group">
+  <label for="receiver">Receiver</label>
+  <p class="form-control" id="receiver"><%= @message.friend.username %></p>
+</div>
+<label for="content">Content</label>
+<p class="form-control" id="content"><%= @message.content %></p>
+<br>
 
-<h2>Sender: <%= @message.user.username %></h2>
-<h2>Receiver: <%= @message.friend.username %></h2>
-<h2>Content: </h2>
-<h2><%= @message.content %></h2>
-<a class="button" href="/messages/<%= @message.id %>/edit">Edit Message</a><br>
+<button type="button" class="btn btn-link"><a class="button" href="/messages/<%= @message.id %>/edit">Edit Message</a></button>
 <% if flash.has?(:message_edit) %>
-  <%= flash[:message_edit] %>
+<h4 class="red"><%= flash[:message_edit]%></h4>
 <% end %>
+<br>
 <form class="" action="/messages/<%= @message.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
-  <input type="submit" name="" value="Delete Message">
+  <!-- <input type="submit" name="" value="Delete Message"> -->
+  <button type="submit" class="btn btn-link">Delete Message</button>
 </form>
-<a class="button" href="/messages/messages">View All Messages</a><br>
-<a class="button" href="/users/current_user">Homepage</a>
+<button type="button" class="btn btn-link"><a href="/messages/messages">View All Messages</a></button>
+<br>
+<button class="btn btn-link"><a href="/users/current_user">Homepage</a></button>

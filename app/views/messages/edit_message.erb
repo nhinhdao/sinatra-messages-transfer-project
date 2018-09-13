@@ -1,10 +1,18 @@
-<h1>Edit Message</h1>
-
-<form class="" action="/messages/<%= @message.id %>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="patch">
-  <label>Receiver</label><br>
-  <p><%= @message.friend.username %></p>
-  <label>Content</label><br><br>
-  <textarea name="message[content]" rows="4" cols="80" value = ""><%= @message.content %></textarea><br><br>
-  <input type="submit" name="" value="Send">
+<h1 class="main-title">Edit Message</h1>
+<br>
+<form role="form" action="/messages/<%= @message.id %>" method="post">
+<input id="hidden" type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="receiver">Receiver</label>
+    <p class="form-control" id="receiver"><%= @message.friend.username %></p>
+  </div>
+  <!-- <label>Receiver: </label><br>
+  <p><%= @message.friend.username %></p> -->
+  <label for="content">Content</label>
+  <input name="message[content]" type="text" class="form-control" id="content" value="<%= @message.content %>">
+  <textarea name="message[content]" class="form-control" rows="3"><%= @message.content %></textarea>
+  <!-- <label>Content:</label><br><br>
+  <textarea name="message[content]" rows="4" cols="80" value = ""><%= @message.content %></textarea><br><br> -->
+  <br>
+  <button type="submit" class="btn btn-info">Send</button>
 </form>
