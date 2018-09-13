@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   end
 
 
-  # and notice them when they successfully sign up
+  # and notice them when they successfully signed up
   post '/signup' do
     @user = User.new(params[:user])
     if @user.save
@@ -58,8 +58,10 @@ class UsersController < ApplicationController
 
 
   delete '/users/:id' do
+    # binding.pry
     @user = User.find_by_id(params[:id])
-    @user.delete
+    Friendship.find_by(user_id: current_user.id, friend_id: @user.id).delete
+    Friendship.find_by(user_id: @user.id, friend_id: current_user.id).delete
     redirect '/users/friends'
   end
 
@@ -75,7 +77,7 @@ class UsersController < ApplicationController
     params[:friends].each do |i|
       if a = User.find_by_id(i)
         current_user.friends << a
-        current_user.save
+        Friendship.create(user_id: current_user.id, friend_id: a.id)
       else
         redirect '/users/friends'
       end

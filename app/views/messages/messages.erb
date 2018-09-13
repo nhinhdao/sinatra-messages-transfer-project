@@ -1,10 +1,23 @@
 <h1>Hi, <%= current_user.username %></h1>
 
-<h2>Your Messages</h2><br>
+<h2>Your Messages</h2>
+<h3>Sent</h3>
 <% current_user.messages.each do |message| %>
 <table>
   <tr>
     <td><%= message.friend.username %></td>
+    <td><a href="/messages/<%= message.id %>">View</a></td>
+  </tr>
+</table>
+<% end %>
+<br>
+
+<h3>Inbox</h3>
+<% friends_messages = Message.all.select {|m| m.friend == current_user} %>
+<% friends_messages.each do |message| %>
+<table>
+  <tr>
+    <td><%= message.user.username %></td>
     <td><a href="/messages/<%= message.id %>">View</a></td>
   </tr>
 </table>

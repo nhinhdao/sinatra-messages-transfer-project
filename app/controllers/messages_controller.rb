@@ -2,7 +2,7 @@ require 'rack-flash'
 # Routes for Messages Flow
 class MessagesController < ApplicationController
   use Rack::Flash
-  # view all TO AND FROM users' messages
+  # view all users' sent and inbox messages
   get '/messages/messages' do
     erb :'/messages/messages'
   end
@@ -14,12 +14,9 @@ class MessagesController < ApplicationController
 
   post '/messages/send_message' do
     # binding.pry
-    @message_to_user = Message.create(content: params[:message][:content], user_id: current_user.id, friend_id: params[:message][:friend_id])
-    @friend = User.find(params[:message][:friend_id])
-    @message_to_friend = Message.create(content: params[:message][:content], user_id: @friend.id, friend_id: current_user.id)
-    @friend.messages << @message_to_friend
-    flash[:sent] = "Message was sent to #{@friend.username}"
-    redirect :"/messages/#{@message_to_user.id}"
+    @message = Message.create(content: params[:message][:content], user_id: current_user.id, friend_id: params[:message][:friend_id])
+    flash[:sent] = "Message was sent to #{@message.friend.username}"
+    redirect :"/messages/#{@message.id}"
   end
 
   # view a single message
@@ -35,14 +32,14 @@ class MessagesController < ApplicationController
     if @message && @message.user == current_user
       erb :'/messages/edit_message'
     else
-      flash[:message_edit] = "Sorry. You can not edit this message" 
+      flash[:message_edit] = "Sorry. You can not edit the message was sent by #{@message.friend.username}."
       redirect "/messages/#{@message.id}"
     end
   end
 
   patch '/messages/:id' do
     @message = Message.find(params[:id])
-    @message.update(friend_id: params[:message][:friend_id], content: params[:message][:content])
+    @message.update(content: params[:message][:content])
     redirect "/messages/#{@message.id}"
   end
 
@@ -50,6 +47,7 @@ class MessagesController < ApplicationController
   delete '/messages/:id' do
     @message = Message.find(params[:id])
     @message.delete
+    binding.pry
     redirect "/messages/messages"
   end
 end
