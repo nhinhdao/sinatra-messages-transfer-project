@@ -1,3 +1,6 @@
+<% if flash.has?(:message_update) %>
+<h4 class="alert alert-success" role="alert"><%= flash[:message_update]%></h4>
+<% end %>
 <h1 class="main-title">Message View Page</h1>
 <br>
 <div class="form-group">
@@ -11,17 +14,15 @@
 <label for="content">Content</label>
 <p class="form-control" id="content"><%= @message.content %></p>
 <br>
-
-<button type="button" class="btn btn-link"><a class="button" href="/messages/<%= @message.id %>/edit">Edit Message</a></button>
 <% if flash.has?(:message_edit) %>
-<h4 class="red"><%= flash[:message_edit]%></h4>
+<h4 class="alert alert-danger" role="alert"><%= flash[:message_edit]%></h4>
 <% end %>
+<a href="/messages/<%= @message.id %>/edit" class="btn btn-default btn-sm active" role="button">Edit Message</a><br>
 <br>
 <form class="" action="/messages/<%= @message.id %>" method="post">
   <input id="hidden" type="hidden" name="_method" value="delete">
   <!-- <input type="submit" name="" value="Delete Message"> -->
-  <button type="submit" class="btn btn-link">Delete Message</button>
+  <button type="submit" class="btn btn-default btn-sm active">Delete Message</button><br><br>
 </form>
-<button type="button" class="btn btn-link"><a href="/messages/messages">View All Messages</a></button>
-<br>
-<button class="btn btn-link"><a href="/users/current_user">Homepage</a></button>
+<a href="/messages/messages" class="btn btn-default btn-sm active" role="button">View All Messages</a><br><br>
+<a href="/users/current_user" class="btn btn-default btn-sm active" role="button">Homepage</a>

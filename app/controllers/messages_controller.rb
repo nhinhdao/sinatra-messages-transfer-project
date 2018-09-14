@@ -41,6 +41,7 @@ class MessagesController < ApplicationController
     # binding.pry
     @message = Message.find(params[:id])
     @message.update(content: params[:message][:content])
+    flash[:message_update] = "Successfully updated and resent message."
     redirect "/messages/#{@message.id}"
   end
 

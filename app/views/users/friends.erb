@@ -1,24 +1,35 @@
 <% if flash.has?(:notice) %>
-<h4 class="alert alert-success" role="alert"><%= flash[:notice]%></h4>
+  <h4 class="alert alert-success" role="alert"><%= flash[:notice]%></h4>
 <% end %>
 
-<h1 class="main-title">Friend List</h1>
-<button type="button" class="btn btn-default btn-sm"><a href="/users/current_user">Homepage</a></button>
-<br><br>
-<% current_user.friends.each do |friend| %>
-<div class="container">
-<div class="row">
-  <div class="col-md-4">
-    <h3><%= friend.username %></h3>
-    <h4><%= friend.email %></h4>
-    <!-- <h4 class="button"><a href="/messages/new_message">New Message</a></h4> -->
-    <button type="button" class="btn btn-link btn-sm"><a href="/messages/new_message">New Message</a></button>
-    <form class="" action="/users/<%= friend.id %>" method="post">
-      <input id="hidden" type="hidden" name="_method" value="delete">
-      <!-- <input type="submit" name="" value="Unfriend"> -->
-      <button type="submit" class="btn btn-link btn-sm">Unfriend</button>
-    </form>
-  </div>
-</div>
-</div>
+<h1 class="text-center main-title">Friend List</h1>
+
+<% if current_user.friends.count == 0 %>
+
+  <h4 class="text-center alert alert-warning" role="alert">You are not connecting to any users. Please make friends to start.</h4>
+  <h5  class="text-center"><a href="/users/current_user" >Homepage</a></h5>
+
+<% else %>
+
+  <h5  class="text-center"><a href="/users/current_user" >Homepage</a></h5>
+  <br>
+  <h5  class="text-center"><a href="/messages/new_message" class="btn btn-info btn-sm" role="button">New Message</a></h5>
+
+  <% current_user.friends.each do |friend| %>
+  <table class="table table-bordered">
+    <tr class="success">
+      <th class="text-info"><%= friend.username %></th>
+    </tr>
+    <tr>
+      <td>
+        <%= friend.email %>
+        <form class="" action="/users/<%= friend.id %>" method="post">
+          <input id="hidden" type="hidden" name="_method" value="delete">
+          <button type="submit" class="btn btn-link btn-sm">Unfriend</button>
+        </form>
+      </td>
+    </tr>
+  </table>
+  <% end %>
+
 <% end %>
