@@ -6,8 +6,8 @@ This is a very simple social web application mimicking connections between a use
 
 ## Installation
 
-- Clone this repository from git hub, cd to ```sinatra-messages-transfer-project``` directory
-- To start using the web application, in the terminal type:
+- Clone this repository from github, cd to ```sinatra-messages-transfer-project``` directory
+- In order for this web application to work, in the terminal type:
 ```
 $ bundle install
 ```
@@ -27,7 +27,7 @@ $ shotgun
 -  Then enter your browser : http://localhost:9393/ to start the web application
 
 
-- I already made up some accounts and messages between the existing users. For best experience, log in the app with this Information:
+- I already made up some accounts and messages between the existing users. For the best experience, log in the app with this Information:
 
 | Email: | nhinhdao.vn@gmail.com
 | :-- | :-- |
@@ -39,7 +39,7 @@ $ shotgun
 | :-- | :-- |
 | Password:  | nhinh12345
 
-or create a new account.
+- Log out, then create a new account.
 
 ## Contributing
 
