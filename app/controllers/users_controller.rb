@@ -73,18 +73,8 @@ class UsersController < ApplicationController
 
 
   post '/users/create_friends' do
-    # params[:friends] = [2,3,...]
-    # params[:friends].each do |i|
-    #   if a = User.find_by_id(i)
-    #     current_user.friends << a
-    #     Friendship.create(user_id: current_user.id, friend_id: a.id)
-    #   else
-    #     redirect '/users/friends'
-    #   end
-    # end
     params[:friends].each do |i|
       a = User.find_by_id(i)
-      # current_user.friends << a
       Friendship.create(user_id: current_user.id, friend_id: a.id)
       Friendship.create(user_id: a.id, friend_id: current_user.id)
       flash[:notice] = "Successfully connected to #{a.username}."
