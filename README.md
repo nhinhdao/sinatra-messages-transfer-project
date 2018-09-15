@@ -2,7 +2,6 @@
 
 This is a very simple social web application mimicking connections between a user, his/her friends and their messages
 
-> #### This is a basic web application, new users won't have a lot of interactions. Please log in with the account provided below for better experience.
 
 ## Installation
 
@@ -27,7 +26,10 @@ $ shotgun
 -  Then enter your browser : http://localhost:9393/ to start the web application
 
 
-- I already made up some accounts and messages between the existing users. For the best experience, log in the app with this Information:
+> ***This is a basic web application so new users won't have a lot of interactions.***
+> ***I already made up some accounts and messages between the existing users***
+> ***. Please log in with the account provided below for better experience.***
+
 
 | Email: | nhinhdao.vn@gmail.com
 | :-- | :-- |
