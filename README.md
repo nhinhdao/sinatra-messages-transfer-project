@@ -2,7 +2,7 @@
 
 This is a very simple social web application mimicking connections between a user, his/her friends and their messages
 
-> #### This is a static web appliacation so please use the account provided below for better experience.
+> #### This is a basic web application, new users won't have a lot of interactions. Please log in with the account provided below for better experience.
 
 ## Installation
 
