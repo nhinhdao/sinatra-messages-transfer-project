@@ -3,7 +3,7 @@
 <% if current_user.messages.count == 0 %>
 
   <h4 class="text-center alert alert-warning" role="alert">You are not connecting to any users. Please make friends to start.</h4>
-  <a class="button" href="/users/current_user">Homepage</a>
+  <a href="/users/current_user" class="btn btn-default btn-sm" role="button">Homepage</a></h5>
 
 <% else %>
 
@@ -26,7 +26,6 @@
   </table>
   <% end %>
 
-  <br>
-  <a class="button" href="/users/current_user">Homepage</a>
+  <a href="/users/current_user" class="btn btn-default btn-sm" role="button">Homepage</a></h5>
 
 <% end %>

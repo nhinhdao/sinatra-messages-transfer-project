@@ -7,11 +7,10 @@
 <% if current_user.friends.count == 0 %>
 
   <h4 class="text-center alert alert-warning" role="alert">You are not connecting to any users. Please make friends to start.</h4>
-  <h5  class="text-center"><a href="/users/current_user" >Homepage</a></h5>
-
+  <br>
+  <a href="/users/current_user" class="btn btn-default btn-sm" role="button">Homepage</a></h5>
 <% else %>
 
-  <h5  class="text-center"><a href="/users/current_user" >Homepage</a></h5><br>
   <h5  class="text-center"><a href="/messages/new_message" class="btn btn-info btn-sm" role="button">New Message</a></h5>
 
   <% current_user.friends.each do |friend| %>
@@ -30,5 +29,5 @@
     </tr>
   </table>
   <% end %>
-
+  <a href="/users/current_user" class="btn btn-default btn-sm" role="button">Homepage</a></h5>
 <% end %>
