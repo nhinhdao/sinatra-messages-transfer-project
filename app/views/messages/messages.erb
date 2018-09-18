@@ -1,3 +1,7 @@
+<% if flash.has?(:message_error) %>
+  <h4 class="alert alert-danger" role="alert"><%= flash[:message_error]%></h4>
+<% end %>
+
 <h1 class="text-center"><%= current_user.username %>'s Messages</h1><br>
 
 <% if current_user.messages.count == 0 %>

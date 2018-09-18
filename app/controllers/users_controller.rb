@@ -77,7 +77,7 @@ class UsersController < ApplicationController
       a = User.find_by_id(i)
       Friendship.create(user_id: current_user.id, friend_id: a.id)
       Friendship.create(user_id: a.id, friend_id: current_user.id)
-      flash[:notice] = "Successfully connected to #{a.username}."
+      flash[:notice] = "Successfully connected. You have #{params[:friends].count} new friends."
     end
     redirect '/users/friends'
   end

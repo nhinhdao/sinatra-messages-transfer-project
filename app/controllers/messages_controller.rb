@@ -30,6 +30,7 @@ class MessagesController < ApplicationController
     # binding.pry
     @message = Message.find(params[:id])
     if @message && @message.user == current_user
+      session[:message_id] = @message.id
       erb :'/messages/edit_message'
     else
       flash[:message_edit] = "Sorry. You can not edit the message was sent by #{@message.user.username}."
@@ -40,9 +41,14 @@ class MessagesController < ApplicationController
   patch '/messages/:id' do
     # binding.pry
     @message = Message.find(params[:id])
-    @message.update(content: params[:message][:content])
-    flash[:message_update] = "Successfully updated and resent message."
-    redirect "/messages/#{@message.id}"
+    if @message.id == session[:message_id]
+      @message.update(content: params[:message][:content])
+      flash[:message_update] = "Successfully updated and resent message."
+      redirect "/messages/#{@message.id}"
+    else
+      flash[:message_error] = "Action Denied"
+      redirect '/messages/messages'
+    end
   end
 
   # delete a message
