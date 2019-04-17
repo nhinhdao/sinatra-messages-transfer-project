@@ -6,6 +6,14 @@
   font-family: 'Open Sans', sans-serif;
 }
 */
+body div.container{
+  height: 100%;
+  background: #eee;
+}
+
+div#starter-template {
+  padding-top: 100px;
+}
 
 body div.container .main_title{
   font-family: 'Elsie Swash Caps', cursive;
