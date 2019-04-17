@@ -1,35 +1,50 @@
+
+<div class="ui top fixed inverted menu">
+  <a class="item" href="/users/current_user"><h3>
+    The Message Book</h3>
+  </a>
+  <a class="item active" href="/users/current_user">
+    Home
+  </a>
+  <a class="item" href="/logout">
+    Log out
+  </a>
+</div>
+  
 <% if flash.has?(:notice) %>
   <h4 class="alert alert-success" role="alert"><%= flash[:notice]%></h4>
 <% end %>
 
-<h1 class="text-center">Hi, <%= current_user.username %></h1>
 <br><br>
 
 
-<div class="ui middle aligned animated list">
-  <div class="item">
-    <i class="envelope icon"></i>
-    <div class="content">
-      <a class="header" href="/messages/messages">My Messages</a>
-    </div>
-  </div>
-  <div class="item">
-    <i class="users icon"></i>
-    <div class="content">
-      <a class="header" href="/users/friends">Friends List</a>
-    </div>
-  </div>
-  <div class="item">
-    <i class="handshake outline icon"></i>
-    <div class="content">
-      <a class="header" href="/users/new_friend">Add Friend</a>
-    </div>
-  </div>
-  <div class="item">
-    <i class="edit icon"></i>
-    <div class="content">
-      <a class="header" href="/messages/new_message">Send Message</a>
+<div class="ui grid">
+  <div class="two wide column"></div>
+    <div class="twelve wide column">
+            <div class="ui basic center aligned  segment">
+                <img class="ui centered small circular image" src="https://i.imgur.com/vBHAwZo.jpg">
+                <h1><%=current_user.username %></h1>
+                <i><%= current_user.email %></i>
+            </div>
+            <div class="ui basic center aligned  segment">
+                <div class="ui compact menu">
+                  <a class="item" href="/messages/messages">
+                    <i class="icon mail"></i> Messages
+                    <% messages = Message.all.select {|m| m.user == current_user || m.friend == current_user} %>
+                    <div class="floating ui red label"><%= messages.length %></div>
+                  </a>
+                  <a class="item" href="/users/friends">
+                    <i class="icon users"></i> Friends
+                    <div class="floating ui teal label"><%= current_user.friends.length %></div>
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
   </div>
 </div>
-

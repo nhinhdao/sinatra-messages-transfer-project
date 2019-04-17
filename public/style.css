@@ -6,16 +6,17 @@
   font-family: 'Open Sans', sans-serif;
 }
 */
-body div.container{
+/* body div.container{
   height: 100%;
   background: #eee;
-}
+} */
 
 div#starter-template {
-  padding-top: 100px;
+  padding-top: 70px;
 }
 
 body div.container .main_title{
   font-family: 'Elsie Swash Caps', cursive;
+  font-size: 4em;
   /* font-family: 'Open Sans', sans-serif; */
 }

@@ -1,28 +1,51 @@
-<% if flash.has?(:message_update) %>
-<h4 class="alert alert-success" role="alert"><%= flash[:message_update]%></h4>
-<% end %>
-<h1 class="main-title">Message View Page</h1>
-<br>
-<div class="form-group">
-  <label for="sender">Sender</label>
-  <p class="form-control" id="sender"><%= @message.user.username %></p>
+<div class="ui top fixed inverted menu">
+  <a class="item" href="/users/current_user"><h3>
+    The Message Book</h3>
+  </a>
+  <a class="item active" href="/messages/messages">
+    Messages
+  </a>
+  <a class="item" href="/users/friends">
+    Friends
+  </a>
+  <a class="item" href="/logout">
+    Log out
+  </a>
 </div>
-<div class="form-group">
-  <label for="receiver">Receiver</label>
-  <p class="form-control" id="receiver"><%= @message.friend.username %></p>
+
+<div class="ui grid">
+  <div class="two wide column"></div>
+    <div class="twelve wide column">
+      <% if flash.has?(:message_update) %>
+      <h4 class="alert alert-success" role="alert"><%= flash[:message_update]%></h4>
+      <% end %>
+      <h1 class="main-title">Message View Page</h1>
+      <h3 class="ui header">
+        Sender
+        <div class="sub header"><%= @message.user.username %></div>
+      </h3>
+      <h3 class="ui header">
+        Receiver
+        <div class="sub header"><%= @message.friend.username %></div>
+      </h3>
+      <h3 class="ui header">
+        Content
+        <div class="sub header"><%= @message.content %></div>
+      </h3>
+      <br>
+      <% if flash.has?(:message_edit) %>
+        <h4 class="alert alert-danger" role="alert"><%= flash[:message_edit]%></h4>
+      <% end %>
+      <div class="ui grid">
+        <div class="two wide column"><a href="/messages/<%= @message.id %>/edit" class="ui small teal button" role="button">Update</a></div>
+        <div class="two wide column">
+          <form class="" action="/messages/<%= @message.id %>" method="post">
+            <input id="hidden" type="hidden" name="_method" value="delete">
+            <button type="submit" class="ui small red button">Delete</button>
+          </form>
+        </div>
+        <div class="two wide column"><a href="/messages/messages" class="ui small blue button" role="button">Messages</a></div>
+      </div>
+    </div>
+  </div>
 </div>
-<label for="content">Content</label>
-<p class="form-control" id="content"><%= @message.content %></p>
-<br>
-<% if flash.has?(:message_edit) %>
-<h4 class="alert alert-danger" role="alert"><%= flash[:message_edit]%></h4>
-<% end %>
-<a href="/messages/<%= @message.id %>/edit" class="btn btn-default btn-sm active" role="button">Edit Message</a><br>
-<br>
-<form class="" action="/messages/<%= @message.id %>" method="post">
-  <input id="hidden" type="hidden" name="_method" value="delete">
-  <!-- <input type="submit" name="" value="Delete Message"> -->
-  <button type="submit" class="btn btn-default btn-sm active">Delete Message</button><br><br>
-</form>
-<a href="/messages/messages" class="btn btn-default btn-sm active" role="button">View All Messages</a><br><br>
-<a href="/users/current_user" class="btn btn-default btn-sm active" role="button">Homepage</a>

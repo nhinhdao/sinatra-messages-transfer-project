@@ -1,17 +1,39 @@
-<h1 class="main-title">Edit Message</h1>
-<br>
-<form role="form" action="/messages/<%= @message.id %>" method="post">
-<input id="hidden" type="hidden" name="_method" value="patch">
-  <div class="form-group">
-    <label for="receiver">Receiver</label>
-    <p class="form-control" id="receiver"><%= @message.friend.username %></p>
+<div class="ui top fixed inverted menu">
+  <a class="item" href="/users/current_user"><h3>
+    The Message Book</h3>
+  </a>
+  <a class="item active" href="/messages/messages">
+    Messages
+  </a>
+  <a class="item" href="/users/friends">
+    Friends
+  </a>
+  <a class="item" href="/logout">
+    Log out
+  </a>
+</div>
+
+
+
+<div class="ui grid">
+  <div class="two wide column"></div>
+    <div class="nine wide column">
+      <h1 class="main-title">Edit Message</h1>
+      <form role="form" action="/messages/<%= @message.id %>" method="post">
+      <input id="hidden" type="hidden" name="_method" value="patch">
+        <h3 class="ui header">
+          Receiver
+          <div class="sub header"><%= @message.friend.username %></div>
+        </h3>
+        <h3 class="ui header">
+          Content
+        </h3>
+        <textarea name="message[content]" class="form-control" rows="3"><%= @message.content %></textarea>
+        <br>
+        <button type="submit" class="ui small teal button">Send</button>
+        <a href="/messages/<%= @message.id %>" class="ui small grey button" role="button">Cancel</a>
+      </form>
+    </div>
   </div>
-  <!-- <label>Receiver: </label><br>
-  <p><%= @message.friend.username %></p> -->
-  <label for="content">Content</label>
-  <textarea name="message[content]" class="form-control" rows="3"><%= @message.content %></textarea>
-  <!-- <label>Content:</label><br><br>
-  <textarea name="message[content]" rows="4" cols="80" value = ""><%= @message.content %></textarea><br><br> -->
-  <br>
-  <button type="submit" class="btn btn-info">Send</button>
-</form>
+</div>
+

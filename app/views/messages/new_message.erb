@@ -1,5 +1,19 @@
+<div class="ui top fixed inverted menu">
+  <a class="item" href="/users/current_user"><h3>
+    The Message Book</h3>
+  </a>
+  <a class="item active" href="/messages/messages">
+    Messages
+  </a>
+  <a class="item" href="/users/friends">
+    Friends
+  </a>
+  <a class="item" href="/logout">
+    Log out
+  </a>
+</div>
 
-<h1 class="text-center main-title">Send Message</h1>
+<h1 class="text-center main-title">New Message</h1>
 
 <% if current_user.friends.count == 0 %>
 <h4 class="text-center alert alert-warning" role="alert">You are not connecting to any users. Please make friends to start.</h4>
@@ -7,21 +21,27 @@
 <% else %>
 
 <br>
-<form role="form" action="/messages/send_message" method="post">
-  <!-- <div class="form-group"> -->
-  <label for="receiver">Receiver</label>
-  <select name="message[friend_id]" class="form-control" id="receiver">
-    <% current_user.friends.each do |friend| %>
-    <option value="<%= friend.id %>"><%= friend.username %></option>
-    <% end %>
-  </select><br>
-  <br>
-  <label for="content">Content</label>
-  <textarea name="message[content]" class="form-control" rows="3"></textarea>
-  <br>
-  <button type="submit" class="btn btn-info">Send</button>
-  <br><br>
-  <a class="button" href="/users/current_user">Go back</a>
-</form>
+<div class="ui grid">
+  <div class="three wide column"></div>
+    <div class="ten wide column">
+      <form role="form" action="/messages/send_message" method="post">
+        <!-- <div class="form-group"> -->
+        <label for="receiver">Receiver</label>
+        <select name="message[friend_id]" class="form-control" id="receiver">
+          <% current_user.friends.each do |friend| %>
+          <option value="<%= friend.id %>"><%= friend.username %></option>
+          <% end %>
+        </select><br>
+        <br>
+        <label for="content">Content</label>
+        <textarea name="message[content]" class="form-control" rows="3" required></textarea>
+        <br>
+        <button type="submit" class="ui small teal button">Send</button>
+        <a href="/messages/messages" class="ui small teal button" role="button">Cancel</a>
+        <a href="/users/current_user" class="small ui blue button">Homepage</a>
+      </form>
+    </div>
+  </div>
+</div>
 
 <% end %>

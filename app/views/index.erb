@@ -1,15 +1,23 @@
-<br>
+<br></br>
 <img class="center-block" src="https://i.imgur.com/9OOKn1A.jpg?1" alt="Credit: https://mhpmag.com/wp-content/uploads/2018/04/Message-received.jpg" class="img-thumbnail">
 
 <!-- <div class="center-block"> -->
-  <h1 class="main-title text-info text-center">The Message Book!</h1>
-  <h2 class="main-title text-center">Where cool people share their interests and secrets.</h2><br>
-  <h4 class="text-center">You're one of us? </h4>
-  <h5  class="text-center"><a href="/login" class="btn btn-success btn-sm" role="button">Log In</a></h5>
-  <!-- <button type="button" class="center-block btn btn-link"><a href="/login">Log In</a></button> -->
-  <!-- <a href="/login" class="text-center btn btn-info btn-sm active" role="button">Log In</a><br><br> -->
-  <h4 class="text-center">You want to be one of us?</h4>
-  <h5  class="text-center"><a href="/signup" class="btn btn-success btn-sm" role="button">Sign Up</a></h5>
-  <!-- <button type="button" class="center-block btn btn-link"><a href="/signup">Sign Up</a></button> -->
-  <!-- <a href="/signup" class="center-block btn btn-info btn-sm active" role="button">Sign Up</a><br><br> -->
-<!-- </div> -->
+  <h1 class="main-title text-info text-center">The Message Book</h1>
+  <div class="ui two column centered grid">
+    <div class="column">
+      <form class="" action="/login" method="post">
+        <label for="email" >Email:</label>
+        <input id="email" class="form-control" type="text" name="user[email]" value="" required><br>
+        <label for="password" >Password:</label>
+        <input id="password" class="form-control" type="password" name="user[password]" value="" required><br>
+
+        <% if flash.has?(:error) %>
+          <h4 class="alert alert-warning" role="alert"><%= flash[:error]%></h4>
+        <% end %>
+        <div class="ui center aligned segment basic">
+          <button type="submit" class="ui small teal button">Log In</button>
+          <a href="/signup" class="small ui blue button">Or, Sign Up</a>
+        </div>
+      </form>
+    </div>
+  </div>

@@ -1,10 +1,17 @@
 
+<div class="ui top fixed inverted menu">
+  <a class="item"><h3>
+    The Message Book
+  </h3></a>
+</div>
+
+
 <h3 class="main-title">The Message Book!</h1><br><br>
 <form class="" action="/login" method="post">
   <label for="email" >Email:</label>
-  <input id="email" class="form-control" type="text" name="user[email]" value=""><br>
+  <input id="email" class="form-control" type="text" name="user[email]" value="" required><br>
   <label for="password" >Password:</label>
-  <input id="password" class="form-control" type="password" name="user[password]" value=""><br>
+  <input id="password" class="form-control" type="password" name="user[password]" value="" required><br>
   <br>
 
   <% if flash.has?(:error) %>

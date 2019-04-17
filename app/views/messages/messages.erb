@@ -2,34 +2,61 @@
   <h4 class="alert alert-danger" role="alert"><%= flash[:message_error]%></h4>
 <% end %>
 
-<h1 class="text-center"><%= current_user.username %>'s Messages</h1><br>
+<div class="ui top fixed inverted menu">
+  <a class="item" href="/users/current_user"><h3>
+    The Message Book</h3>
+  </a>
+  <a class="item active" href="/messages/messages">
+    Messages
+  </a>
+  <a class="item" href="/users/friends">
+    Friends
+  </a>
+  <a class="item" href="/logout">
+    Log out
+  </a>
+</div>
 
-<% if current_user.messages.count == 0 %>
+<h1 class="text-center"><%= current_user.username %>'s Messages</h1>
 
-  <h4 class="text-center alert alert-warning" role="alert">You are not connecting to any users. Please make friends to start.</h4>
-  <a href="/users/current_user" class="btn btn-default btn-sm" role="button">Homepage</a></h5>
+<div class="ui grid">
+  <div class="two wide column"></div>
+    <div class="twelve wide column">
+      <% if current_user.messages.count == 0 %>
 
-<% else %>
+        <h4 class="text-center alert alert-warning" role="alert">You are not having any message at the moment. Please add friend to continue!</h4>
+        <a href="/users/new_friend" class="small ui teal button">Add Friend</a>
+        <a href="/users/current_user" class="small ui blue button">Homepage</a></h5>
 
-  <h3><button type="button" class="btn btn-primary">Inbox</button></h3>
+      <% else %>
 
-  <% friends_messages = Message.all.select {|m| m.friend == current_user} %>
-  <% friends_messages.each do |message| %>
-    <table class="table">
-      <td class="success"><%= message.user.username %></td>
-      <td class="active"><a href="/messages/<%= message.id %>">View</a></td>
-    </table>
-  <% end %>
-  <br>
+        <div class="ui label">
+          <i class="teal mail icon"></i> Inbox
+        </div><br>
 
-  <h3><button type="button" class="btn btn-primary">Sent</button></h3>
-  <% current_user.messages.each do |message| %>
-  <table class="table">
-    <td class="info"><%= message.friend.username %></td>
-    <td class="active"><a href="/messages/<%= message.id %>">View</a></td>
-  </table>
-  <% end %>
+        <% friends_messages = Message.all.select {|m| m.friend == current_user} %>
+        <% friends_messages.each do |message| %>
+          <table class="ui single line table">
+            <td class="positive"><%= message.user.username %></td>
+            <th><a href="/messages/<%= message.id %>">View</a></th>
+          </table>
+        <% end %>
 
-  <a href="/users/current_user" class="btn btn-default btn-sm" role="button">Homepage</a></h5>
+        <div class="ui label">
+          <i class="teal edit icon"></i> Sent
+        </div><br>
 
-<% end %>
+        <% current_user.messages.each do |message| %>
+          <table class="ui single line table">
+            <td class="warning"><%= message.friend.username %></td>
+            <th><a href="/messages/<%= message.id %>">View</a></th>
+          </table>
+        <% end %>
+
+        <a href="/messages/new_message" class="small ui teal button">New Message</a>
+        <a href="/users/current_user" class="small ui blue button">Homepage</a>
+
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -16,7 +16,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       session[:id] = @user.id
-      flash[:notice] = "Thanks for signing up!"
+      flash[:notice] = "Thank you for signing up, #{@user.username}!"
       redirect :"users/current_user"
     else
       redirect :'/signup'
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   # Log in page
   get '/login' do
     if !logged_in?
-      erb :'users/login'
+      erb :index
     else
       erb :'users/current_user'
     end
@@ -41,8 +41,8 @@ class UsersController < ApplicationController
       session[:id] = @user.id
       erb :"users/current_user"
     else
-      flash[:error] = "User's Information does not match our record. Please try again or sign up for access"
-      redirect :'/login'
+      flash[:error] = "Sorry, we can't find you. Please try again!"
+      redirect :'/'
     end
   end
 
@@ -73,10 +73,12 @@ class UsersController < ApplicationController
 
 
   post '/users/create_friends' do
-    params[:friends].each do |i|
-      a = User.find_by_id(i)
-      Friendship.create(user_id: current_user.id, friend_id: a.id)
-      Friendship.create(user_id: a.id, friend_id: current_user.id)
+    if params[:friends]
+      params[:friends].each do |i|
+        a = User.find_by_id(i)
+        Friendship.create(user_id: current_user.id, friend_id: a.id)
+        Friendship.create(user_id: a.id, friend_id: current_user.id)
+      end
       flash[:notice] = "Successfully connected. You have #{params[:friends].count} new friends."
     end
     redirect '/users/friends'
