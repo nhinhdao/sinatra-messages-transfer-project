@@ -21,13 +21,13 @@ body div.container .main_title{
   /* font-family: 'Open Sans', sans-serif; */
 }
 
-div.App-body {
+div#starter-template div.app-body {
   display: table;
   height: 100%;
   width: 100%;
 }
 
-#form-login {
+div#starter-template div.app-body #form-login {
   display: table-cell;
   text-align: center;
   vertical-align: middle;

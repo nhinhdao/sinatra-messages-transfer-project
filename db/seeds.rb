@@ -6,7 +6,7 @@ d = User.create(username: "Samuel Hope", email: "samwell@gmail.com", password: '
 e = User.create(username: "Bruce Lynk", email: "bruklyn.nyc@gmail.com", password: 'nhinh12345')
 f = User.create(username: "Virginia Daniels", email: "virginia.dan@gmail.com", password: 'nhinh12345')
 g = User.create(username: "Joe Kath", email: "joe.new@gmail.com", password: 'nhinh12345')
-h = User.create(username: "Nhinh Dao", email: "nhinhdao.vn@gmail.com", password: 'nhinh12345')
+h = User.create(username: "Robin Dao", email: "robin.frvn@gmail.com", password: 'nhinh12345')
 i = User.create(username: "Steven Tran", email: "steve.tran@gmail.com", password: 'nhinh12345')
 
 a1 = "Make sure to bring some food for lunch"

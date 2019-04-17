@@ -1,6 +1,8 @@
 
 source 'https://rubygems.org'
 
+ruby '2.5.3'
+
 gem 'activerecord', require: 'active_record' # '~> 4.2.7.1'
 gem 'bcrypt'
 gem 'pry'
