@@ -11,8 +11,12 @@ gem 'rspec'
 gem 'shotgun'
 gem 'sinatra'
 gem 'sinatra-activerecord', require: 'sinatra/activerecord'
-gem 'sqlite3'
+gem 'pg'
 gem 'thin'
 gem 'tux'
 gem 'rack-flash3'
 gem 'hirb'
+
+group :development do
+  gem 'sqlite3'  
+end
