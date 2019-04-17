@@ -20,3 +20,15 @@ body div.container .main_title{
   font-size: 4em;
   /* font-family: 'Open Sans', sans-serif; */
 }
+
+div.App-body {
+  display: table;
+  height: 100%;
+  width: 100%;
+}
+
+#form-login {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
