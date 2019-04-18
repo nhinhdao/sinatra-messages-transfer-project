@@ -11,6 +11,9 @@
           <input id="email" class="form-control" type="text" name="user[email]" required><br>
           <label for="password" >Password</label>
           <input id="password" class="form-control" type="password" name="user[password]" required><br>
+          <% if flash.has?(:error) %>
+            <h4 class="alert alert-warning" role="alert"><%= flash[:error]%></h4>
+          <% end %>
           <div class="ui center aligned segment basic">
             <button type="submit" class="ui small teal button">Sign Up</button>
             <a href="/" class="small ui blue button">Or, Log In</a>

@@ -37,6 +37,7 @@
         <h4 class="alert alert-danger" role="alert"><%= flash[:message_edit]%></h4>
       <% end %>
       <div class="ui grid">
+        <% if @message.user == current_user %>
         <div class="two wide column"><a href="/messages/<%= @message.id %>/edit" class="ui small teal button" role="button">Update</a></div>
         <div class="two wide column">
           <form class="" action="/messages/<%= @message.id %>" method="post">
@@ -44,6 +45,7 @@
             <button type="submit" class="ui small red button">Delete</button>
           </form>
         </div>
+        <% end %>
         <div class="two wide column"><a href="/messages/messages" class="ui small blue button" role="button">Messages</a></div>
       </div>
     </div>

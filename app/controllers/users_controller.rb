@@ -19,6 +19,7 @@ class UsersController < ApplicationController
       flash[:notice] = "Thank you for signing up, #{@user.username}!"
       redirect :"users/current_user"
     else
+      flash[:error] = "Sorry, Something went wrong. Please try again!"
       redirect :'/signup'
     end
   end
