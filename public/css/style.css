@@ -1,16 +1,6 @@
 @import url(http://fonts.googleapis.com/css?family=Clicker+Script);
 @import url(http://fonts.googleapis.com/css?family=Elsie+Swash+Caps:400,900);
 
-/* .main-title {
-   font-family: 'Elsie Swash Caps', cursive;
-  font-family: 'Open Sans', sans-serif;
-}
-*/
-/* body div.container{
-  height: 100%;
-  background: #eee;
-} */
-
 div#starter-template {
   padding-top: 70px;
 }
@@ -18,7 +8,6 @@ div#starter-template {
 body div.container .main_title{
   font-family: 'Elsie Swash Caps', cursive;
   font-size: 4em;
-  /* font-family: 'Open Sans', sans-serif; */
 }
 
 div#starter-template div.app-body {
